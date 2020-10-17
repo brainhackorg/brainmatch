@@ -1,7 +1,7 @@
 #!bin/bash
 
 # Get ID of projects on GitHub issues.
-ISSUE_ID_LIST=$(gh issue list -L 1000 | awk '{print $1}')
+ISSUE_ID_LIST=$(gh issue list -L 1000 -l "status:web_ready"| awk '{print $1}')
 
 # Create output file and add header.
 echo "ID \t TITLE \t LABELS \n" > projects.tsv
