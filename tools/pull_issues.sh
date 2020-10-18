@@ -1,4 +1,4 @@
-#!bin/bash
+#!/bin/bash
 
 # Get ID of projects on GitHub issues.
 ISSUE_ID_LIST=$(gh issue list -L 1000 -l "status:web_ready"| awk '{print $1}')
