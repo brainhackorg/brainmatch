@@ -7,8 +7,10 @@ OUTFILE=$1
 if [[ -d "global2020" ]]
 then
     echo "global2020 directory found."
+    DIR_EXISTS=true
 else
     echo "The global2020 directory could not be found..."
+    DIR_EXISTS=false
     git clone https://github.com/brainhackorg/global2020
 fi
 
@@ -48,7 +50,11 @@ then
     OUTFILE=$(echo "${CURRENT_DIR}/${OUTFILE}")
 fi
 
-echo "Removing cloned repository..."
-rm -rf global2020
+# Do not remove directory if it already existed.
+if ! ${DIR_EXISTS}
+then
+    echo "Removing cloned repository..."
+    rm -rf global2020
+fi
 
 echo "Projects data saved in ${OUTFILE}"
