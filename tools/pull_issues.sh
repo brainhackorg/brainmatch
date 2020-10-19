@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Clone Brainhack Global 2020 repository to get project info.
+git clone https://github.com/brainhackorg/global2020
+
 # Get ID of projects on GitHub issues.
 ISSUE_ID_LIST=$(gh issue list -L 1000 -l "status:web_ready"| awk '{print $1}')
 
