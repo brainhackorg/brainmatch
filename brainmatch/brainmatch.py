@@ -126,6 +126,9 @@ def check_necessary_contributor_data(contributors_df):
 
 def normalize_contributors(contributors_df, contributor_fields):
 
+    # Make sure headers do not have leading or trailing spaces.
+    contributors_df.rename(columns=lambda x: x.strip(), inplace=True)
+
     contributors_df.rename(
         columns={y: x for x, y in contributor_fields.items()}, inplace=True)
 
