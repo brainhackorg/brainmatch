@@ -2,19 +2,22 @@
 
 # Filename of output file (it can include the path).
 OUTFILE=$1
+# Path to the repository. It can be empty
+REPOPATH=$2
 
-# Clone Brainhack Global 2020 repository to get project info and move into directory.
-if [[ -d "global2020" ]]
+# If REPOPATH is given then move into that directory and if it is not given then
+# clone Brainhack Global 2020 repository to get project info and move into directory.
+if [ $# -eq 2 ]
 then
-    echo "global2020 directory found."
+    echo "Moving into ${REPOPATH}"
     DIR_EXISTS=true
+    cd ${REPOPATH}
 else
     echo "The global2020 directory could not be found..."
     DIR_EXISTS=false
     git clone https://github.com/brainhackorg/global2020
+    cd global2020
 fi
-
-cd global2020
 
 # Get ID of projects on GitHub issues.
 ISSUE_ID_LIST=$(gh issue list -L 1000 -l "status:web_ready"| awk '{print $1}')
