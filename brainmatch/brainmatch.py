@@ -12,6 +12,7 @@ import pandas as pd
 extension_sep = "."
 top_match_label = "top"
 underscore = "_"
+label_separator = ","
 
 project_top_id_label = "id"
 score_id_label = "score"
@@ -103,8 +104,12 @@ def get_projects_features(project_data):
 
     project_features = dict.fromkeys(feature_keys)
 
-    # ToDo
-    # Get the data corresponding to each key from project_data
+    labels = project_data.split(label_separator)
+
+    # Get the values from the labels corresponding to each feature
+    for key in project_features.keys():
+        project_features[key] = \
+            [label.replace(key, "") for label in labels if key in label]
 
     return project_features
 
