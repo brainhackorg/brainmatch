@@ -1,0 +1,4 @@
+ID,TITLE,LABELS
+1,functionalMRIProject,"programming:Python,tools:DIPY,tools:ANTs,modality:DWI,programming:Julia,programming:R,bhg:boston_usa_1"
+2,AgingCognition,"programming:Bash,tools:FSL"
+3,SpeciesEvolution,"modality:MEG,programming:Bash,tools:MNE,tools:SPM,tools:Nipype,tools:Freesurfer,bhg:boston_usa_1"
