@@ -23,28 +23,28 @@ project_labels_field = "LABELS"
 
 email_address_field = "email_address_field"
 
-experience_programming_languages_field = "experience_programming_languages_field"
-experience_neuroscientific_techniques_field =  "experience_neuroscientific_techniques_field"
-experience_neurosoftware_field = "experience_neurosoftware_field"
-experience_methods_field = "experience_methods_field"
+experience_programming_field = "experience_programming_field"
+experience_modality_field = "experience_modality_field"
+experience_tools_field = "experience_tools_field"
+experience_topic_field = "experience_topic_field"
 
-experience_git_field = "experience_git_field"
+experience_git_skills_field = "experience_git_skills_field"
 
-desired_programming_languages_field = "desired_programming_languages_field"
-desired_neuroscientific_techniques_field = "desired_neuroscientific_techniques_field"
-desired_neurosoftware_field = "desired_neurosoftware_field"
-desired_methods_field = "desired_methods_field"
+desired_programming_field = "desired_programming_field"
+desired_modality_field = "desired_modality_field"
+desired_tools_field = "desired_tools_field"
+desired_topic_field = "desired_topic_field"
 
 necessary_indices = [email_address_field,
-                     experience_programming_languages_field,
-                     experience_neuroscientific_techniques_field,
-                     experience_neurosoftware_field,
-                     experience_methods_field,
-                     experience_git_field,
-                     desired_programming_languages_field,
-                     desired_neuroscientific_techniques_field,
-                     desired_neurosoftware_field,
-                     desired_methods_field]
+                     experience_programming_field,
+                     experience_modality_field,
+                     experience_tools_field,
+                     experience_topic_field,
+                     experience_git_skills_field,
+                     desired_programming_field,
+                     desired_modality_field,
+                     desired_tools_field,
+                     desired_topic_field]
 
 bhg_label = "bhg:"
 
