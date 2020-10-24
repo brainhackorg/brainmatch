@@ -23,26 +23,26 @@ project_labels_field = "LABELS"
 
 email_address_field = "email_address_field"
 
-experience_programming_field = "experience_programming_field"
 experience_modality_field = "experience_modality_field"
+experience_programming_field = "experience_programming_field"
 experience_tools_field = "experience_tools_field"
 experience_topic_field = "experience_topic_field"
 
 experience_git_skills_field = "experience_git_skills_field"
 
-desired_programming_field = "desired_programming_field"
 desired_modality_field = "desired_modality_field"
+desired_programming_field = "desired_programming_field"
 desired_tools_field = "desired_tools_field"
 desired_topic_field = "desired_topic_field"
 
 necessary_indices = [email_address_field,
-                     experience_programming_field,
                      experience_modality_field,
+                     experience_programming_field,
                      experience_tools_field,
                      experience_topic_field,
                      experience_git_skills_field,
-                     desired_programming_field,
                      desired_modality_field,
+                     desired_programming_field,
                      desired_tools_field,
                      desired_topic_field]
 
@@ -114,6 +114,82 @@ def get_projects_features(project_data):
     return project_features
 
 
+def compute_score(proj_features, contrib_data):
+
+    score = 0
+
+    # Assume that the integer indicating the skill is separated from the its
+    # meaning by a whitespace
+    contrib_git_skills = [int(s) for s in contrib_data[
+        experience_git_skills_field].split(" ") if s.isdigit()][0]
+
+    proj_git_skills = int(
+        proj_features[git_skills_label].split(underscore)[0]
+        if proj_features[git_skills_label] else -1)
+
+    # Split the dataframe strings into lists
+    contrib_experience_modality = \
+        [s.strip() for s in contrib_data[experience_modality_field].split(",")]
+    contrib_experience_programming = \
+        [s.strip()
+         for s in contrib_data[experience_programming_field].split(",")]
+    contrib_experience_tools = \
+        [s.strip() for s in contrib_data[experience_tools_field].split(",")]
+    contrib_experience_topic = \
+        [s.strip() for s in contrib_data[experience_topic_field].split(",")]
+
+    contrib_desired_modality = \
+        [s.strip() for s in contrib_data[desired_modality_field].split(",")]
+    contrib_desired_programming = \
+        [s.strip() for s in contrib_data[desired_programming_field].split(",")]
+    contrib_desired_tools = \
+        [s.strip() for s in contrib_data[desired_tools_field].split(",")]
+    contrib_desired_topic = \
+        [s.strip() for s in contrib_data[desired_topic_field].split(",")]
+
+    # Compute the score corresponding to the contributor's git skills
+    if contrib_git_skills >= proj_git_skills > 0:
+        score += 1
+
+    # Compute the scores corresponding to the contributor's experience
+    experience_modality_match = list(
+        set(proj_features[modality_label]) & set(contrib_experience_modality))
+    score += len(experience_modality_match)
+
+    experience_programming_match = list(
+        set(proj_features[programming_label]) &
+        set(contrib_experience_programming))
+    score += len(experience_programming_match)
+
+    experience_tools_match = list(
+        set(proj_features[tools_label]) & set(contrib_experience_tools))
+    score += len(experience_tools_match)
+
+    experience_topic_match = list(
+        set(proj_features[topic_label]) & set(contrib_experience_topic))
+    score += len(experience_topic_match)
+
+    # Compute the scores corresponding to the contributor's desired items
+    desired_modality_match = list(
+        set(proj_features[modality_label]) & set(contrib_desired_modality))
+    score += len(desired_modality_match)
+
+    desired_programming_match = list(
+        set(proj_features[programming_label]) &
+        set(contrib_desired_programming))
+    score += len(desired_programming_match)
+
+    desired_tools_match = list(
+        set(proj_features[tools_label]) & set(contrib_desired_tools))
+    score += len(desired_tools_match)
+
+    edesired_topic_match = list(
+        set(proj_features[topic_label]) & set(contrib_desired_topic))
+    score += len(edesired_topic_match)
+
+    return score
+
+
 def match(projects_df, contributors_df):
 
     project_ids = list(map(str, projects_df[project_id_field].tolist()))
@@ -131,12 +207,12 @@ def match(projects_df, contributors_df):
         for proj_index, project_data in projects_df.iterrows():
 
             # Get the features for the project
-            features = get_projects_features(
+            proj_features = get_projects_features(
                 project_data[project_labels_field])
 
-            # ToDo
             # Match and score the expected fields
-            contrib_match.append(proj_index)  # add some value for now
+            score = compute_score(proj_features, contrib_data)
+            contrib_match.append(score)
 
         match_df = match_df.append(
             pd.Series(contrib_match, index=columns), ignore_index=True)
