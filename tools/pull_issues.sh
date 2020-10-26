@@ -5,7 +5,7 @@ display_usage() {
     echo "Usage:"
     echo "\tsh pull_issues.sh OUTPUT EVENT (REPO)\n"
     echo "Arguments:\n"
-    echo "\tOUTPUT [required]: Path to store the output file. It can also be a filename.\n"
+    echo "\tOUTPUT [required]: Path to store the output file. It can also be a filename. It must have the '.tsv' extension.\n"
     echo "\tEVENT [required]: Label of the Brainhack Global event to pull project data from. It must start by 'bhg:'.\n"
     echo "\tREPO [optional]: Path to global 2020 repository. Usefule if you do not want to clone the repository again."
     echo "\tIf this argument is not given, the script will clone the repository and delete it once the script finishes.\n"
