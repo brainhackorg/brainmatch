@@ -114,9 +114,21 @@ def get_projects_features(project_data):
     return project_features
 
 
-def compute_score(proj_features, contrib_data):
+def compute_feature_score(proj_feature, contrib_feature):
+
+    feature_match = list(set(proj_feature) & set(contrib_feature))
+
+    # Avoid division by 0 if no feature was provided
+    score = len(feature_match)/len(proj_feature) if len(proj_feature) else 0
+
+    return score
+
+
+def compute_total_score(proj_features, contrib_data):
 
     score = 0
+
+    nzero_feature_count = sum(len(val) for val in proj_features.values())
 
     # Assume that the integer indicating the skill is separated from the its
     # meaning by a whitespace
@@ -152,42 +164,32 @@ def compute_score(proj_features, contrib_data):
         score += 1
 
     # Compute the scores corresponding to the contributor's experience
-    experience_modality_match = list(
-        set(proj_features[modality_label]) & set(contrib_experience_modality))
-    score += len(experience_modality_match)
+    score += compute_feature_score(proj_features[modality_label],
+                                   contrib_experience_modality)
 
-    experience_programming_match = list(
-        set(proj_features[programming_label]) &
-        set(contrib_experience_programming))
-    score += len(experience_programming_match)
+    score += compute_feature_score(proj_features[programming_label],
+                                   contrib_experience_programming)
 
-    experience_tools_match = list(
-        set(proj_features[tools_label]) & set(contrib_experience_tools))
-    score += len(experience_tools_match)
+    score += compute_feature_score(proj_features[tools_label],
+                                   contrib_experience_tools)
 
-    experience_topic_match = list(
-        set(proj_features[topic_label]) & set(contrib_experience_topic))
-    score += len(experience_topic_match)
+    score += compute_feature_score(proj_features[topic_label],
+                                   contrib_experience_topic)
 
     # Compute the scores corresponding to the contributor's desired items
-    desired_modality_match = list(
-        set(proj_features[modality_label]) & set(contrib_desired_modality))
-    score += len(desired_modality_match)
+    score += compute_feature_score(proj_features[modality_label],
+                                   contrib_desired_modality)
 
-    desired_programming_match = list(
-        set(proj_features[programming_label]) &
-        set(contrib_desired_programming))
-    score += len(desired_programming_match)
+    score += compute_feature_score(proj_features[programming_label],
+                                   contrib_desired_programming)
 
-    desired_tools_match = list(
-        set(proj_features[tools_label]) & set(contrib_desired_tools))
-    score += len(desired_tools_match)
+    score += compute_feature_score(proj_features[tools_label],
+                                   contrib_desired_tools)
 
-    edesired_topic_match = list(
-        set(proj_features[topic_label]) & set(contrib_desired_topic))
-    score += len(edesired_topic_match)
+    score += compute_feature_score(proj_features[topic_label],
+                                   contrib_desired_topic)
 
-    return score
+    return score/nzero_feature_count
 
 
 def match(projects_df, contributors_df):
@@ -211,7 +213,7 @@ def match(projects_df, contributors_df):
                 project_data[project_labels_field])
 
             # Match and score the expected fields
-            score = compute_score(proj_features, contrib_data)
+            score = compute_total_score(proj_features, contrib_data)
             contrib_match.append(score)
 
         match_df = match_df.append(
@@ -307,7 +309,8 @@ def main():
     match_df = match(projects_df, contributors_df)
 
     # Save data to a csv file
-    match_df.to_csv(args.out_match_fname, index=False)
+    dec_places = 2
+    match_df.round(dec_places).to_csv(args.out_match_fname, index=False)
 
     # Compute the top n
     top_match_df = compute_top_n(match_df, args.n)
@@ -320,7 +323,7 @@ def main():
     top_fname = os.path.join(path, top_basename)
 
     # Save data to a csv file
-    top_match_df.to_csv(top_fname, index=False)
+    top_match_df.round(dec_places).to_csv(top_fname, index=False)
 
 
 if __name__ == "__main__":
