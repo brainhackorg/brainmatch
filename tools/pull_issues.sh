@@ -53,7 +53,7 @@ fi
 ISSUE_ID_LIST=$(gh issue list -L 1000 -l "${EVENT}"| awk '{print $1}')
 
 # Create output file and add header.
-echo "ID \t TITLE \t LABELS \n" > ${OUTFILE}
+echo "ID    TITLE    LABELS \n" > ${OUTFILE}
 
 echo "Pulling data from project issues... "
 
@@ -70,7 +70,7 @@ do
     if [[ ${LABELS_LIST} == *project* ]] && [[ ${LABELS_LIST} == *status:web_ready* || ${LABELS_LIST} == *status:published* ]]
     then
         # Save ID, title and labels to output file.
-        echo "${ISSUE_ID##*( )} \t ${TITLE##*( )} \t ${LABELS_LIST##*( )} \n" >> ${OUTFILE}
+        echo "${ISSUE_ID##*( )}    ${TITLE##*( )}    ${LABELS_LIST##*( )}\n" >> ${OUTFILE}
     fi
 done
 
