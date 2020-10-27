@@ -1,7 +1,7 @@
 #!/bin/bash
 
 display_usage() {
-    echo "This script will save the ID, title and labels of the Brainhack Global projects for the given event.\n"
+    echo "This script will save the ID, and labels of the Brainhack Global projects for the given event.\n"
     echo "Usage:"
     echo "\tsh pull_issues.sh OUTPUT EVENT (REPO)\n"
     echo "Arguments:\n"
