@@ -18,7 +18,6 @@ project_top_id_label = "id"
 score_id_label = "score"
 
 project_id_field = "ID"
-project_title_field = "TITLE"
 project_labels_field = "LABELS"
 
 email_address_field = "email_address_field"
@@ -109,7 +108,7 @@ def get_projects_features(project_data):
     # Get the values from the labels corresponding to each feature
     for key in project_features.keys():
         project_features[key] = \
-            [label.replace(key, "") for label in labels if key in label]
+            [label.replace(key, "").strip() for label in labels if key in label]
 
     return project_features
 
@@ -289,8 +288,10 @@ def main():
     parser = _build_arg_parser()
     args = parser.parse_args()
 
-    # projects_df = pd.read_csv(args.in_projects_fname, sep='\t')
-    projects_df = pd.read_csv(args.in_projects_fname)
+    column_names = [project_id_field, project_labels_field]
+    projects_df = pd.read_csv(
+        args.in_projects_fname, sep='\t', header=None, names=column_names,
+        skiprows=1)
     contributors_df = pd.read_csv(args.in_contributors_fname)
 
     with open(args.in_contributors_fields_fname, 'r') as f:
