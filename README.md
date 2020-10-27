@@ -36,6 +36,11 @@ into account.
 
 The scores are normalized to 1.
 
+## Requirements
+
+Besides Python ànd the Python packages specified in [`requirements.txt`](requirements.txt),
+the tools assume that you have [GitHub's command line tool](https://cli.github.com/) installed.
+
 ## Instructions
 
 In order to obtain the project-participant matches, you will need to:
