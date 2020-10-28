@@ -92,6 +92,8 @@ def compute_top_n(match_df, n):
             [x for y in zip(top_scores.index.tolist(), top_scores) for x in y]
         top_data = list([[data[0]], top_data])
         top_data = functools.reduce(operator.iconcat, top_data, [])
+        # Keep the top n results
+        top_data = top_data[:len(columns)]
         top_match.append(top_data)
 
     top_match_df = pd.DataFrame(top_match, columns=columns)
