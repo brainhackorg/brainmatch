@@ -7,11 +7,19 @@ The purpose of these scripts is to find matches between projects submitted to
 a Brainhack Global event and the participants in that event. For each
 participant and project, the algorithm generates a score based on the matches
 between a project's requirements (e.g. topic, required skills or tools) and the
-participant's skills or background and interests.
+participant's skills, background and interests.
 
 Once the result is generated, the Brainhack Global event organizers will be
 able to send participants an email with information about the projects that
 potentially fit them better within the context of the event.
+
+As the Brainhack Global event organizers, if you want your participants to be benefited from the matching algorithm, we recommend you to use the [participant registration form](https://docs.google.com/forms/d/1dCy9NpprAtd1gZU6FBrvpSX9WwAGS54U_r7pLTiHScI/edit?usp=sharing) provided by the Brainhack global organization as your participant registration form. Before you use the form please make sure that:
+
+- You create a **copy** of the form on your own local Google drive and link your registration workflow to that local form.
+
+- If you want the matching algrithm to work properly, avoid making any changes on the questions listed in the form. However you can add extra questions if you need more data for your own local use and adjust the consent question accordingly if necessary.
+
+
 
 ## Context
 
