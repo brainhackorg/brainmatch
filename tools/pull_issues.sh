@@ -61,7 +61,8 @@ echo "Pulling data from project issues... "
 for ISSUE_ID in $ISSUE_ID_LIST
 do
     # Get project labels.
-    LABELS_LIST=$(gh issue view "${ISSUE_ID}" | grep 'labels:' | cut -d':' -f2)
+    LABELS_LIST=$(gh issue view "${ISSUE_ID}" | grep 'labels:')
+    LABELS_LIST=${LABELS_LIST#"labels:"}
 
     # Only save the issue if the issue has the project and (web_ready or published) labels.
     if [[ ${LABELS_LIST} == *project* ]] && [[ ${LABELS_LIST} == *status:web_ready* || ${LABELS_LIST} == *status:published* ]]
