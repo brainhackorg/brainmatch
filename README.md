@@ -7,12 +7,16 @@ The purpose of these scripts is to find matches between projects submitted to
 a Brainhack Global event and the participants in that event. For each
 participant and project, the algorithm generates a score based on the matches
 between a project's requirements (e.g. topic, required skills or tools) and the
-participant's skills or background and interests.
+participant's skills, background and interests.
 
 Once the result is generated, the Brainhack Global event organizers will be
 able to send participants an email with information about the projects that
 potentially fit them better within the context of the event.
 
+To gather these data we recommend using the [Brainhack Global Participant Registration Form](https://github.com/brainhackorg/bhg-event-materials)
+provided by the Brainhack Global Organization as a convenience participant 
+registration form.
+ 
 ## Context
 
 The tools assume that the projects submitted as issues to the [https://github.com/brainhackorg/global2020](https://github.com/brainhackorg/global2020)
