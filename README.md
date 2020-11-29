@@ -13,9 +13,9 @@ Once the result is generated, the Brainhack Global event organizers will be
 able to send participants an email with information about the projects that
 potentially fit them better within the context of the event.
 
-
 To gather these data we recommend using the [Brainhack Global Participant Registration Form](https://github.com/brainhackorg/bhg-event-materials)
- provided by the Brainhack Global Organization as a convenience participant registration form.
+provided by the Brainhack Global Organization as a convenience participant 
+registration form.
  
 ## Context
 
