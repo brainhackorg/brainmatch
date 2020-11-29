@@ -13,11 +13,9 @@ Once the result is generated, the Brainhack Global event organizers will be
 able to send participants an email with information about the projects that
 potentially fit them better within the context of the event.
 
-As the Brainhack Global event organizers, if you want your participants to be 
-benefited from the matching algorithm, we recommend you to use the 
-[participant registration form](https://docs.google.com/forms/d/1dCy9NpprAtd1gZU6FBrvpSX9WwAGS54U_r7pLTiHScI/edit?usp=sharing) 
-provided by the Brainhack Global Organization as your participant registration
- form.
+
+To gather these data we recommend using the [Brainhack Global Participant Registration Form](https://github.com/brainhackorg/bhg-event-materials)
+ provided by the Brainhack Global Organization as a convenience participant registration form.
  
 ## Context
 
