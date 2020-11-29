@@ -1,4 +1,5 @@
 ID    LABELS
-1    	programming:Python, tools:DIPY, tools:ANTs, modality:DWI, programming:Julia, programming:R, bhg:boston_usa_1
+1    	programming:Python, tools:DIPY, tools:ANTs, modality:DWI, programming:Julia, programming:R, git_skills:2_branches_PRs, bhg:boston_usa_1
 2    	programming:Bash, tools:FSL
-3    	modality:MEG, programming:Bash, programming:Matlab, tools:MNE, tools:SPM, tools:Nipype, tools:Freesurfer, bhg:boston_usa_1
+3    	modality:MEG, programming:Bash, programming:Matlab, tools:MNE, tools:SPM, tools:Nipype, tools:Freesurfer, git_skills:3_continuous_integration, bhg:boston_usa_1
+4    	modality:EEG, programming:C++, tools:MNE, git_skills:2_branches_PRs, git_skills:1_commit_push, bhg:boston_usa_1
