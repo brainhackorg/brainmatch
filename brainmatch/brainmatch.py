@@ -136,6 +136,11 @@ def compute_total_score(proj_features, contrib_data):
     contrib_git_skills = [int(s) for s in contrib_data[
         experience_git_skills_field].split(" ") if s.isdigit()][0]
 
+    # Sort the git skills labels in ascending order and take the highest skill
+    # level if more than one git skill label are given to a project.
+    proj_features[git_skills_label] = \
+        sorted(proj_features[git_skills_label])[-1]
+
     proj_git_skills = int(
         proj_features[git_skills_label].split(underscore)[0]
         if proj_features[git_skills_label] else -1)
