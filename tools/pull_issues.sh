@@ -6,7 +6,7 @@ display_usage() {
     echo "\tsh pull_issues.sh OUTPUT EVENT (REPO)\n"
     echo "Arguments:\n"
     echo "\tOUTPUT [required]: Path to store the output file. It can also be a filename. It must have the '.tsv' extension.\n"
-    echo "\tEVENT [required]: Label of the Brainhack Global event to pull project data from. It must start by 'bhg:'.\n"
+    echo "\tEVENT [required]: Label of the Brainhack Global event to pull project data from. It must start by 'bhg:'. If projects from all events are desired, use 'bhg:global'.\n"
     echo "\tREPO [optional]: Path to global 2020 repository. Usefule if you do not want to clone the repository again."
     echo "\tIf this argument is not given, the script will clone the repository and delete it once the script finishes.\n"
     echo "Help:\n"
@@ -50,7 +50,12 @@ else
 fi
 
 # Get ID of projects on GitHub issues.
-ISSUE_ID_LIST=$(gh issue list -L 1000 -l "${EVENT}"| awk '{print $1}')
+if [[ ${EVENT} == "bhg:global" ]]
+then
+    ISSUE_ID_LIST=$(gh issue list -L 1000 | awk '{print $1}')
+else
+    ISSUE_ID_LIST=$(gh issue list -L 1000 -l "${EVENT}"| awk '{print $1}')
+fi
 
 # Create output file and add header.
 echo "ID    LABELS \n" > ${OUTFILE}
@@ -76,7 +81,7 @@ done
 cd ..
 
 # Check if filename has a slash (path). Move the file one directory up if it's just a filename.
-if [[ "${OUTFILE}" != *\/*  ]] || [[ "${OUTFILE}" != *\\* ]]
+if [[ "${OUTFILE}" != *\/*  ]] || [[ "${OUTFILE}" != *\\* ]]
 then
     echo "An absolute path for the output file was not provided."
     echo "Moving output file one directory up..."
