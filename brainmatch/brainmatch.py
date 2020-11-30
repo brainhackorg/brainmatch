@@ -232,6 +232,9 @@ def filter_event_projects(event, projects_df):
 
     project_labels = list(projects_df[project_labels_field])
 
+    if event == 'bhg:global':
+        event = 'bhg:'
+
     for proj_index, project_data in projects_df.iterrows():
         if event not in project_data[project_labels_field]:
             projects_df = projects_df.drop(proj_index)
