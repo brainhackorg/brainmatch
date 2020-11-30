@@ -1,7 +1,7 @@
 email_address_field,id_top1,score_top1,id_top2,score_top2
-participant1@bhg.org,1,0.71,4,0.6
-participant2@bhg.org,1,0.48,4,0.4
-participant3@bhg.org,4,0.6,1,0.33
-participant4@bhg.org,4,0.6,1,0.29
-participant5@bhg.org,4,0.4,3,0.09
-participant6@bhg.org,1,0.55,4,0.2
+participant1@bhg.org,1,0.71,3,0.31
+participant2@bhg.org,1,0.48,3,0.25
+participant3@bhg.org,1,0.33,3,0.28
+participant4@bhg.org,1,0.29,3,0.19
+participant5@bhg.org,3,0.09,1,0.05
+participant6@bhg.org,1,0.55,3,0.16
