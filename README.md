@@ -120,11 +120,17 @@ You should make sure that:
 If the shell script that pulls the issues from the [https://github.com/brainhackorg/global2020](https://github.com/brainhackorg/global2020)
 repository is unable to pull the issues, or the generated `projects.tsv` file is
 empty, it may well due to the fact that [GitHub's command line tool](https://cli.github.com/)
-has not been installed or has not been configured. Note that the tool requires
-you to authenticate with your `GitHub` account to grant the necessary
-permissions to be able to use `GitHub` CLI tool. Please, follow the instructions
-for your operating system, and read the output messages when running the tools
-to be able to diagnose any issue.
+has not been installed or has not been configured. Note that the tool **will
+prompt** you to authenticate with your `GitHub` account at the command line to
+grant the necessary permissions to be able to use `GitHub` CLI tool. If you are
+not prompted to authenticate, the shell script that pulls the issues will not be
+able to pull them, even if you are able to call and run it with no **apparent**
+issues. You can check that the GitHub's command line tool installation was
+successful by calling any GitHub CLI command in the terminal (e.g.
+`gh issue list`) on a given **repository** that is hosted in GitHub and that you
+have cloned locally, and checking that the result is the expected one. Please,
+follow the instructions for your operating system, and read the output messages
+when running the tools to be able to diagnose any issue.
 
 Use the available test data and the expected matches to ensure that the tool's
 necessary components have been installed and are working as expected.
