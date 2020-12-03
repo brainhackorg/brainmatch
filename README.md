@@ -105,3 +105,26 @@ written to `data/match_top.csv`.
 
 Example input files and expected output files are provided in the `data`
 folder.
+
+Note that you can also explore the projects and the matches of all available
+projects by using the `bhg:global` flag when pulling the projects, and when
+computing the scores for the pulled projects.
+
+## Troobleshooting
+
+You should make sure that:
+1. You have installed and configured the necessary components described in the
+[Requirements](#Requirements) section.
+1. Your `fields.json` mapping file is accurate.
+
+If the shell script that pulls the issues from the [https://github.com/brainhackorg/global2020](https://github.com/brainhackorg/global2020)
+repository is unable to pull the issues, or the generated `projects.tsv` file is
+empty, it may well due to the fact that [GitHub's command line tool](https://cli.github.com/)
+has not been installed or has not been configured. Note that the tool requires
+you to authenticate with your `GitHub` account to grant the necessary
+permissions to be able to use `GitHub` CLI tool. Please, follow the instructions
+for your operating system, and read the output messages when running the tools
+to be able to diagnose any issue.
+
+Use the available test data and the expected matches to ensure that the tool's
+necessary components have been installed and are working as expected.
