@@ -90,7 +90,7 @@ file `data/match.csv`; and that you would like to additionally restrict the
 score sorting to a top-5, you will be calling the script as:
 
 ```
-python brainmatch.py
+python compute_brainmatch_scores.py
     bhg:boston_usa_1
     data/projects.tsv
     data/participant_registration.csv
