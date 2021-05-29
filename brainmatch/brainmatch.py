@@ -110,7 +110,8 @@ def get_projects_features(project_data):
     # Get the values from the labels corresponding to each feature
     for key in project_features.keys():
         project_features[key] = \
-            [label.replace(key, "").strip() for label in labels if key in label]
+            [label.replace(key, "").strip()
+             for label in labels if key in label]
 
     return project_features
 
