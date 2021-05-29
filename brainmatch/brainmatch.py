@@ -61,6 +61,25 @@ feature_keys = [git_skills_label, modality_label, programming_label,
 
 
 def _generate_top_match_column_names(n):
+    """Generate top match column names to host information (project identifier
+    and contributor score) about the best project fit of a contributor.
+
+    Parameters
+    ----------
+    n : int
+        Project identifier and score pair count to be generated.
+
+    Returns
+    -------
+    columns : list
+        Column names.
+
+    Examples
+    --------
+    >>> n = 2
+    >>> columns = _generate_top_match_column_names(n)
+    ['id_top1', 'score_top1', 'id_top2', 'score_top2']
+    """
 
     columns = []
 
@@ -75,6 +94,21 @@ def _generate_top_match_column_names(n):
 
 
 def compute_top_n(match_df, n):
+    """Compute the top-n project rank for each contributor in the matching
+    data.
+
+    Parameters
+    ----------
+    match_df : DataFrame
+        Matching data.
+    n : int
+        Rank of the data to be kept.
+
+    Returns
+    -------
+    top_match_df : DataFrame
+        Top-n rank contributor matching data.
+    """
 
     ids = match_df.columns.tolist()
     project_count = len(ids[1:])
@@ -102,6 +136,19 @@ def compute_top_n(match_df, n):
 
 
 def get_projects_features(project_data):
+    """Get the project features under the form of a dictionary from the
+    provided data string.
+
+    Parameters
+    ----------
+    project_data : str
+        Project data.
+
+    Returns
+    -------
+    project_features : dict
+        Project features.
+    """
 
     project_features = dict.fromkeys(feature_keys)
 
@@ -116,6 +163,26 @@ def get_projects_features(project_data):
 
 
 def compute_feature_score(proj_feature, contrib_feature):
+    """Compute the score of the contributor features with respect to the
+    required project features. The score is computed as ratio of the number of
+    features the contributor presents with respect to the number of features
+    required by the project. The score is bounded in the range [0, 1]: a value
+    of 0 means that the contributor does not present any of the features
+    required by the project; a value of 1 means that the contributor presents
+    all required features.
+
+    Parameters
+    ----------
+    proj_feature : list
+        Required project features.
+    contrib_feature : list
+        Contributor features.
+
+    Returns
+    -------
+    score : float
+        The contributor's score for the given project feature.
+    """
 
     feature_match = list(set(proj_feature) & set(contrib_feature))
 
@@ -126,6 +193,24 @@ def compute_feature_score(proj_feature, contrib_feature):
 
 
 def compute_total_score(proj_features, contrib_data):
+    """Compute the total score of a given contributor with respect to the
+    required project features. The total score is bounded in the [0, 1] range:
+    a value of 0 means that the contributor does not present any of the
+    features required by the project; a value of 1 means that the contributor
+    presents all required features.
+
+    Parameters
+    ----------
+    proj_features : dict
+        Required project features.
+    contrib_data : Series
+        Contributor features.
+
+    Returns
+    -------
+    float
+        The contributor's score with respect to the required project features.
+    """
 
     score = 0
 
@@ -199,6 +284,22 @@ def compute_total_score(proj_features, contrib_data):
 
 
 def match(projects_df, contributors_df):
+    """Compute the contributor to project matching. Provides a score
+    determining the fit or match of a given contributor with respect to the
+    event projects.
+
+    Parameters
+    ----------
+    projects_df : DataFrame
+        Project data.
+    contributors_df : DataFrame
+        Contributor data.
+
+    Returns
+    -------
+    match_df : DataFrame
+        Contributor to project matching data.
+    """
 
     project_ids = list(map(str, projects_df[project_id_field].tolist()))
     columns = list([[email_address_field], project_ids])
@@ -229,6 +330,20 @@ def match(projects_df, contributors_df):
 
 
 def filter_event_projects(event, projects_df):
+    """Retrieve project data corresponding to the given event.
+
+    Parameters
+    ----------
+    event : str
+        Event.
+    projects_df : DataFrame
+        Project data.
+
+    Returns
+    -------
+    projects_df : DataFrame
+        Project data corresponding to the given event.
+    """
 
     project_labels = list(projects_df[project_labels_field])
 
@@ -250,6 +365,13 @@ def filter_event_projects(event, projects_df):
 
 
 def check_necessary_contributor_data(contributors_df):
+    """Check whether the contributor data contain all required fields.
+
+    Parameters
+    ----------
+    contributors_df : DataFrame
+        Contributor data.
+    """
 
     indices = contributors_df.columns.tolist()
 
@@ -263,6 +385,22 @@ def check_necessary_contributor_data(contributors_df):
 
 
 def normalize_contributors(contributors_df, contributor_fields):
+    """Normalize contributor data: strip leading and trailing whitespaces in
+    column headers, and rename them according to the provided contributor
+    fields.
+
+    Parameters
+    ----------
+    contributors_df : DataFrame
+        Contributor data.
+    contributor_fields : dict
+        Contributor fields.
+
+    Returns
+    -------
+    DataFrame
+        Normalized contributor data.
+    """
 
     # Make sure headers do not have leading or trailing spaces.
     contributors_df.rename(columns=lambda x: x.strip(), inplace=True)
