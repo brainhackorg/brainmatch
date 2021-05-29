@@ -54,7 +54,7 @@ jobs:
         flake8 --version
         python -c 'import brainmatch'
         flake8 . --count --statistics
-        coverage run --source brainmatch -m pytest brainmatch -o junit_family=xunit2 -v --doctest-modules --junitxml=junit/test-results-${{ runner.os }}-${{ matrix.python-version }}.xml
+        coverage run --source brainmatch -m pytest -o junit_family=xunit2 -v --doctest-modules --junitxml=junit/test-results-${{ runner.os }}-${{ matrix.python-version }}.xml
 
     - name: Upload pytest test results
       uses: actions/upload-artifact@main
