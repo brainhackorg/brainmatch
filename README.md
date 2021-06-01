@@ -1,4 +1,7 @@
 # brainmatch
+
+[![Build Status](https://github.com/brainhackorg/brainmatch/workflows/test,%20package/badge.svg)](https://github.com/brainhackorg/brainmatch/actions?query=workflow%3A%22test%2C+package%22+branch%3Amain)
+
 Event project requirement-contributor request matching toolkit.
 
 ## Introduction
