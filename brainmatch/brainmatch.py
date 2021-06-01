@@ -75,6 +75,7 @@ def _generate_top_match_column_names(n):
     --------
     >>> n = 2
     >>> columns = _generate_top_match_column_names(n)
+    >>> print(columns)
     ['id_top1', 'score_top1', 'id_top2', 'score_top2']
     """
 
