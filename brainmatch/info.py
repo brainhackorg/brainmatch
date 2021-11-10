@@ -24,7 +24,7 @@ classifiers = ['Development Status :: 3 - Alpha',
                'Topic :: Scientific/Engineering',
                'Topic :: Scientific/Engineering :: Neuroimaging']
 
-description = 'Tractography learning.'
+description = 'Brainhack event project to attendee matching tools.'
 
 keywords = 'Event project requirement-contributor request matching toolkit'
 
