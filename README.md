@@ -39,7 +39,7 @@ needs to perfectly match the available labels in the project issues in the
 
 The scoring method does not currently take into account the required level of
 expertise for a project, nor is the participant's desired project type taken
-into account. Similarly, the method assumes that, even if multiple  `git_skills`
+into account. Similarly, the method assumes that, even if multiple `git_skills`
 labels may be present for a project, the involved skills are incremental, and
 hence, only the most demanding skill (according to the fixed scale/label values)
 is taken into account to compute the contribution of such category to the score
@@ -49,7 +49,7 @@ The scores are normalized to 1.
 
 ## Requirements
 
-Besides Python and the Python packages specified in [`requirements.txt`](requirements.txt),
+Besides Python and the Python packages specified in [`setup.cfg`](setup.cfg),
 the tools assume that you have [GitHub's command line tool](https://cli.github.com/) installed.
 
 ## Instructions
